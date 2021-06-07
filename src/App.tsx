@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import {logIn, signOut, signup} from "./auth";
+import { UserContext } from "./Profile";
 
 function App() {
+  const [message, setMessage]  = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const user = useContext(UserContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input type="email" value={email} onChange={(event) => setEmail(event.target.value) } />
+      <input type="password" value={password} onChange={(event) => setPassword(event.target.value) }/>
+      <button onClick={() => signup(email, password).then(x => {
+        setMessage(x)
+      })}>sign up</button>
+      <button onClick={() => logIn(email, password).then(x => setMessage(x))}>login</button>
+      <button onClick={() => signOut().then(x => setMessage(x))}>sign out</button>
+      <div>{message}</div>
+      {user && <div>{user.email}</div>}
+    </>
   );
 }
 
