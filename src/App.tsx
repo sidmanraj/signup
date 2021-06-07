@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import {logIn, signOut, signup} from "./auth";
+import { logIn, signOut, signup } from "./auth";
 import { UserContext } from "./Profile";
 
 function App() {
