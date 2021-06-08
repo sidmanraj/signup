@@ -3,7 +3,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
